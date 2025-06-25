@@ -1,0 +1,190 @@
+[
+  {
+    "id": "colorpencil",
+    "title": "ColorPencil UI Redesign",
+    "description": "Enhancing the user experience for an ed-tech platform",
+    "category": "uiux",
+    "year": "2024",
+    "image": "/images/projects/cp.png",
+    "liveUrl": "https://colorpencil.com",
+    "githubUrl": "",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "figmaUrl": "https://www.figma.com/design/yEkNHJQZbO5gnhIc0QcMSF/Color-Pencil-Pages?node-id=0-1",
+    "caseStudy": {
+      "hasDetailedStudy": true,
+      "logo": "/images/projects/cp.png",
+      "heroVideo": "/assets/bg-video.mp4",
+      "overview": "This redesign project focused on revamping the UI and UX of ColorPencil.com, an e-learning platform that needed a modern interface to better serve its educational community.",
+      "problem": [
+        "Outdated UI lacking visual consistency",
+        "Poor navigation experience", 
+        "Limited engagement due to cluttered interfaces",
+        "Mobile responsiveness issues"
+      ],
+      "solution": [
+        "Redesigned a modern and cohesive interface",
+        "Streamlined navigation flow",
+        "Improved interaction and visual design",
+        "Enhanced mobile experience"
+      ],
+      "gallery": [
+        "/assets/ss1.png",
+        "/assets/ss2.png", 
+        "/assets/ss3.png",
+        "/assets/ss4.png",
+        "/assets/ss5.png",
+        "/assets/ss6.png"
+      ],
+      
+      "technologies": ["Figma", "UI/UX Design", "Prototyping"],
+      "duration": "3 months",
+      "role": "Lead UI/UX Designer"
+    }
+  },
+ 
+{
+  "id": "enda-website-design",
+  "title": "Enda Website Design",
+  "description": "Enda is a modern, clean UI website designed to deliver a seamless and visually appealing user experience.",
+  "category": "uiux",
+  "year": "2025",
+  "image": "/images/projects/enda-logo.png",
+  "liveUrl": "https://www.endasportswear.com/",
+  "githubUrl": "",
+  "figmaUrl": "https://www.figma.com/design/iNQSCjKiDFJKKapSxwoNsH/Enda?node-id=0-1&t=MO3KlqrdzdZj18Qy-1",
+  "createdAt": "2025-06-25T06:06:29.779Z",
+  "updatedAt": "2025-06-25T06:06:29.779Z",
+  "caseStudy": {
+    "hasDetailedStudy": true,
+    "logo": "/images/projects/enda-logo.png",
+    "heroVideo": "",
+    "overview": "The goal was to design a website for Enda with a focus on simplicity, clarity, and user-friendly navigation. The design emphasizes minimalism while maintaining functionality to enhance brand perception and user engagement.",
+    "problem": [
+      "The previous website had a cluttered and outdated interface.",
+      "Users faced difficulties navigating the website.",
+      "The design lacked consistency across pages.",
+      "Poor mobile responsiveness affected user experience.",
+      "Slow loading times hindered user engagement."
+    ],
+    "solution": [
+      "Redesigned the UI with a clean, minimal layout for better readability and aesthetics.",
+      "Improved navigation structure with clear menus and intuitive flow.",
+      "Implemented a consistent visual style, typography, and color scheme throughout the site.",
+      "Developed a fully responsive design optimized for all devices.",
+      "Optimized images and resources to ensure fast performance and smooth interaction."
+    ],
+    "gallery": [
+      "/assets/e1.png",
+      "/assets/e2.png",
+      "/assets/e3.png",
+      "/assets/e4.png",
+      "/assets/e5.png",
+      "/assets/e6.png"
+    ],
+    
+    "technologies": [
+      "FIgma"
+    ],
+    "duration": "3 Months",
+    "role": "UI/UX Designer"
+  }
+},
+{
+  "id": "launchpad-website-redesign",
+  "title": "LaunchPad Website Redesign",
+  "description": "Launchpad School is a Montessori school in its growth phase, and we redesigned its website with a fresh, engaging, and clean UI to enhance visibility and attract parents.",
+  "category": "uiux",
+  "year": "2025",
+  "image": "/images/projects/lp-logo.png",
+  "liveUrl": "https://thelaunchpad.school/",
+  "githubUrl": "",
+  "figmaUrl": "https://www.figma.com/design/DsGMoqInLzYyDGChRvXSDa/Launchpad?m=auto&t=ePmVA2bf6P4DWso9-6",
+  "createdAt": "2025-06-25T06:18:22.811Z",
+  "updatedAt": "2025-06-25T06:22:10.432Z"
+},
+{
+  "id": "cryptodash",
+  "title": "CryptoDash",
+  "description": "CryptoDash is a real-time cryptocurrency dashboard showcasing live market data using dynamic API integration and an interactive, responsive UI.",
+  "category": "frontend",
+  "year": "2025",
+  "image": "/images/projects/CD-logo.png",
+  "liveUrl": "https://crypto-dash-blush-three.vercel.app/",
+  "githubUrl": "https://github.com/PRoBoT2004/CryptoDash",
+  "createdAt": "2025-06-25T07:08:46.590Z",
+  "updatedAt": "2025-06-25T07:08:46.590Z",
+  "figmaUrl": "",
+  "caseStudy": {
+    "hasDetailedStudy": true,
+    "logo": "/assets/CD-logo.png",
+    "heroVideo": "",
+    "overview": "CryptoDash is a front-end project developed to deliver real-time updates on the cryptocurrency market. The goal was to create an interactive dashboard where users can track live prices, market trends, and key statistics of various cryptocurrencies. By implementing a real-time API, CryptoDash provides instant, up-to-date information within a clean and modern user interface, enhancing the experience for both casual users and market enthusiasts.",
+    "problem": [
+      "Static websites fail to show real-time market data.",
+      "Cryptocurrency dashboards often have complex or overwhelming UIs.",
+      "Slow updates or lag can reduce the reliability of market dashboards.",
+      "Users need access to key market metrics in one place.",
+      "Poor mobile adaptability limits accessibility."
+    ],
+    "solution": [
+      "Integrated live API to fetch and display real-time cryptocurrency prices and trends.",
+      "Designed a clean, intuitive layout that presents market data in a visually organized and user-friendly way.",
+      "Optimized API calls and UI components for smooth, instant updates without compromising performance.",
+      "Consolidated live prices, market cap, volume, and other essential data into a single, easy-to-navigate dashboard.",
+      "Built a responsive design ensuring seamless experience across desktop, tablet, and mobile devices."
+    ],
+    "gallery": [],
+    "technologies": [
+      "React",
+      "TailwindCSS",
+      "JavaScript"
+    ],
+    "duration": "1 Month",
+    "role": "Front End Developer"
+  }
+},
+{
+  "id": "dripstride---ecommerce-store",
+  "title": "DripStride - Ecommerce Store",
+  "description": "DripStride is a modern, feature-rich eCommerce website designed for a leading sneaker brand, providing a seamless online shopping experience with a clean, responsive UI.",
+  "category": "frontend",
+  "year": "2025",
+  "image": "/images/projects/DS-logo.png",
+  "liveUrl": "https://dripstride.vercel.app/",
+  "githubUrl": "https://github.com/PRoBoT2004/Dripstride",
+  "createdAt": "2025-06-25T07:15:44.559Z",
+  "updatedAt": "2025-06-25T07:15:44.560Z",
+  "figmaUrl": "",
+  "caseStudy": {
+    "hasDetailedStudy": true,
+    "logo": "/images/projects/DS-logo.png",
+    "heroVideo": "",
+    "overview": "DripStride is an eCommerce front-end project built for a premium sneaker brand aiming to establish a strong online presence. The client wanted a sleek, high-performance sneaker store that reflects their brand identity and appeals to sneaker enthusiasts. The project includes essential eCommerce features, an engaging design, and a deploy-ready structure, offering users a smooth and attractive shopping experience.",
+    "problem": [
+      "The sneaker brand lacked an online store to reach a wider audience.",
+      "Many sneaker stores have cluttered layouts, overwhelming customers.",
+      "Difficulty in browsing products and finding desired sneakers.",
+      "Slow and unresponsive sites can frustrate customers and reduce sales.",
+      "Lack of essential eCommerce features in basic templates."
+    ],
+    "solution": [
+      "Developed a fully responsive, visually appealing eCommerce website ready for deployment.",
+      "Designed a clean, minimalist UI with a focus on product visuals and user-friendly navigation.",
+      "Implemented organized product listings, filters, and search functionality for easy product discovery.",
+      "Optimized performance for fast loading, smooth transitions, and responsive interactions.",
+      "Integrated key front-end features like product pages, add-to-cart, responsive design, and interactive elements to create a near-production-ready platform."
+    ],
+    "gallery": [],
+    "technologies": [
+      "React.js",
+      "TailwindCSS",
+      "Vercel",
+      "Mobile Responsiveness"
+    ],
+    "duration": "2 Months",
+    "role": "Front End Developer"
+  }
+}
+  
+
+]

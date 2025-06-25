@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import InteractiveBackground from '../common/InteractiveBackground';
 
-const images = ["/assets/Body.png", "/assets/cph.png", "/assets/bl.png"];
+const images = ["./assets/Body.png", "/assets/cph.png", "/assets/bl.png"];
 
 const HeroSection = () => {
   const boxRef = useRef(null);

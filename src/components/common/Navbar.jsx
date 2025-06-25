@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 const Navbar = () => {
   const [isShrunk, setIsShrunk] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -20,6 +21,11 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location]);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -27,11 +33,15 @@ const Navbar = () => {
     });
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <>
-      {/* Full Navbar */}
+      {/* Desktop Full Navbar */}
       <header
-        className={`fixed top-4 left-1/2 transform -translate-x-1/2 px-8 py-4 bg-black/80 backdrop-blur-md border border-orange-500/20 rounded-full shadow-2xl shadow-orange-500/10 z-50 transition-all duration-700 ease-in-out max-w-[95%] w-auto ${
+        className={`fixed top-4 left-1/2 transform -translate-x-1/2 px-8 py-4 bg-black/80 backdrop-blur-md border border-orange-500/20 rounded-full shadow-2xl shadow-orange-500/10 z-50 transition-all duration-700 ease-in-out max-w-[95%] w-auto hidden md:block ${
           isShrunk ? "opacity-0 -translate-y-5 pointer-events-none" : "opacity-100 translate-y-0"
         }`}
       >
@@ -83,11 +93,88 @@ const Navbar = () => {
         </nav>
       </header>
 
-      {/* Mini Logo Navbar */}
+      {/* Mobile Logo - Floating */}
       <Link
         to="/"
         onClick={scrollToTop}
-        className={`fixed top-6 left-6 z-50 transition-all duration-700 ease-in-out cursor-pointer group ${
+        className="fixed z-50 transition-all duration-300 cursor-pointer top-4 left-4 hover:scale-105 md:hidden"
+      >
+        <span className="text-xl font-bold text-orange-500 transition-colors duration-300 hover:text-orange-400">
+          Krishna
+        </span>
+      </Link>
+
+      {/* Mobile Hamburger Button - Floating */}
+      <button
+        onClick={toggleMobileMenu}
+        className="fixed z-50 w-10 h-10 text-gray-300 transition-all duration-300 top-4 right-4 hover:text-orange-400 hover:scale-105 focus:outline-none md:hidden"
+        aria-label="Toggle mobile menu"
+      >
+        <div className="absolute transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+          <span
+            className={`absolute h-0.5 w-6 bg-current transition duration-300 ease-in-out ${
+              isMobileMenuOpen ? 'rotate-45' : '-translate-y-2'
+            }`}
+          ></span>
+          <span
+            className={`absolute h-0.5 w-6 bg-current transition duration-300 ease-in-out ${
+              isMobileMenuOpen ? 'opacity-0' : ''
+            }`}
+          ></span>
+          <span
+            className={`absolute h-0.5 w-6 bg-current transition duration-300 ease-in-out ${
+              isMobileMenuOpen ? '-rotate-45' : 'translate-y-2'
+            }`}
+          ></span>
+        </div>
+      </button>
+
+      {/* Mobile Menu Dropdown - Only appears when opened */}
+      <div
+        className={`fixed top-16 right-4 z-40 md:hidden transition-all duration-300 ease-in-out transform-gpu ${
+          isMobileMenuOpen 
+            ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto' 
+            : 'opacity-0 -translate-y-4 scale-95 pointer-events-none'
+        }`}
+      >
+        <div className="w-64 p-4 border shadow-2xl bg-black/90 backdrop-blur-md border-orange-500/20 rounded-2xl shadow-orange-500/10">
+          <nav className="space-y-3">
+            <Link
+              to="/"
+              onClick={scrollToTop}
+              className={`block py-3 px-4 rounded-xl font-medium transition-all duration-300 hover:bg-orange-500/10 hover:text-orange-400 hover:scale-105 ${
+                location.pathname === '/' ? 'text-orange-400 bg-orange-500/10' : 'text-gray-300'
+              }`}
+            >
+              Home
+            </Link>
+            
+            <Link
+              to="/works"
+              className={`block py-3 px-4 rounded-xl font-medium transition-all duration-300 hover:bg-orange-500/10 hover:text-orange-400 hover:scale-105 ${
+                location.pathname === '/works' ? 'text-orange-400 bg-orange-500/10' : 'text-gray-300'
+              }`}
+            >
+              Works
+            </Link>
+            
+            <Link
+              to="/contact"
+              className={`block py-3 px-4 mt-2 font-medium text-center text-black bg-orange-500 rounded-xl transition-all duration-300 hover:bg-orange-600 hover:scale-105 ${
+                location.pathname === '/contact' ? 'bg-orange-600' : ''
+              }`}
+            >
+              Contact
+            </Link>
+          </nav>
+        </div>
+      </div>
+
+      {/* Desktop Mini Logo - Only for Desktop */}
+      <Link
+        to="/"
+        onClick={scrollToTop}
+        className={`fixed top-6 left-6 z-50 transition-all duration-700 ease-in-out cursor-pointer group hidden md:block ${
           isShrunk ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-5 scale-95 pointer-events-none"
         }`}
       >

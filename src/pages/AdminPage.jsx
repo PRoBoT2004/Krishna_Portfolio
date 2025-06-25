@@ -1,6 +1,6 @@
 import { useLocalAuth } from '../hooks/useLocalAuth';
 import AdminLogin from '../components/admin/AdminLogin';
-import ProjectManager from '../components/admin/ProjectManager';
+import FileProjectManager from '../components/admin/FileProjectManager';
 import { LogOut } from 'lucide-react';
 
 const AdminPage = () => {
@@ -12,12 +12,11 @@ const AdminPage = () => {
 
   return (
     <div className="min-h-screen bg-black">
-      {/* Admin Header */}
       <div className="p-4 border-b bg-gray-900/50 border-orange-500/20">
         <div className="flex items-center justify-between max-w-6xl mx-auto">
           <div>
-            <h1 className="text-2xl font-bold text-orange-400">Admin Dashboard</h1>
-            <p className="text-sm text-gray-400">Welcome back, {user.email}</p>
+            <h1 className="text-2xl font-bold text-orange-400">File-Based Admin</h1>
+            <p className="text-sm text-gray-400">Add projects that persist when deployed</p>
           </div>
           <button
             onClick={logout}
@@ -29,7 +28,7 @@ const AdminPage = () => {
         </div>
       </div>
 
-      <ProjectManager />
+      <FileProjectManager />
     </div>
   );
 };
