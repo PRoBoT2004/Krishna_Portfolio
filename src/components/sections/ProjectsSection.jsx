@@ -8,27 +8,27 @@ const projects = [
     title: "Color Pencil",
     description: "Revamping an educational platform with modern UI/UX principles and enhanced user experience.",
     image: "/assets/1.png",
-    route: "/works/colorpencil-case-study",
+    route: "/case-study/colorpencil",
     figmaLink: "https://www.figma.com/design/yEkNHJQZbO5gnhIc0QcMSF/Color-Pencil-Pages?node-id=0-1",
     type: "UI/UX Design",
     year: "2024"
   },
-  {
-    id: "launchpad",
-    title: "Launchpad",
-    description: "Helping a global school with a modern web presence for better interaction and engagement.",
-    image: "/assets/2.png",
-    route: "/works/launchpad-case-study",
-    figmaLink: "https://www.figma.com/design/DsGMoqInLzYyDGChRvXSDa/Launchpad?node-id=0-1",
-    type: "Web Development",
-    year: "2024"
-  },
+  // {
+  //   id: "launchpad",
+  //   title: "Launchpad",
+  //   description: "Helping a global school with a modern web presence for better interaction and engagement.",
+  //   image: "/assets/2.png",
+  //   route: "/case-study/launchpad",
+  //   figmaLink: "https://www.figma.com/design/DsGMoqInLzYyDGChRvXSDa/Launchpad?node-id=0-1",
+  //   type: "Web Development",
+  //   year: "2024"
+  // },
   {
     id: "enda",
     title: "Enda",
     description: "Designing a mobile app for a sustainable sportswear brand with focus on user engagement.",
     image: "/assets/3.png",
-    route: "/works/enda-case-study",
+    route: "/case-study/enda-website-design",
     figmaLink: "https://www.figma.com/design/Pv13MUB4JVLSDxbbf5b5hn/Enda?node-id=0-1",
     type: "Mobile App",
     year: "2023"
