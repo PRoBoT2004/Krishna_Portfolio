@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Mail, Phone, MapPin, Palette, Github, Instagram } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 const ContactSection = () => {
   const [ref, inView] = useInView({
@@ -17,6 +18,7 @@ const ContactSection = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -28,56 +30,74 @@ const ContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert('Message sent successfully!');
+    setSubmitStatus(null);
+
+    const serviceID = 'service_rd455wl';
+    const templateID = 'template_9ynrm9r';
+    const publicKey = 'lROs1aYsmNJb5c5Rh';
+
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+      to_name: 'Krishna',
+    };
+
+    try {
+      const response = await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      console.log('Email sent successfully:', response);
+      setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 2000);
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
-  {
-    icon: <Mail size={24} className="text-orange-400" />,
-    title: "Email",
-    value: "krishna200428@gmail.com",
-    link: "mailto:krishna200428@gmail.com"
-  },
-  {
-    icon: <Phone size={24} className="text-orange-400" />,
-    title: "Phone",
-    value: "+91 9016116357",
-    link: "tel:+919016116357"
-  },
-  {
-    icon: <MapPin size={24} className="text-orange-400" />,
-    title: "Location",
-    value: "India",
-    link: "/"
-  }
-];
+    {
+      icon: <Mail size={24} className="text-orange-400" />,
+      title: "Email",
+      value: "krishna200428@gmail.com",
+      link: "mailto:krishna200428@gmail.com"
+    },
+    {
+      icon: <Phone size={24} className="text-orange-400" />,
+      title: "Phone",
+      value: "+91 9016116357",
+      link: "tel:+919016116357"
+    },
+    {
+      icon: <MapPin size={24} className="text-orange-400" />,
+      title: "Location",
+      value: "India",
+      link: "#"
+    }
+  ];
 
   const socialLinks = [
-  {
-    name: "Behance",
-    icon: <Palette size={20} className="text-orange-400" />,
-    url: "https://behance.net/krishna",
-    color: "hover:text-purple-400"
-  },
-  {
-    name: "GitHub",
-    icon: <Github size={20} className="text-orange-400" />,
-    url: "https://github.com/PRoBoT2004",
-    color: "hover:text-gray-400"
-  },
-  {
-    name: "Instagram",
-    icon: <Instagram size={20} className="text-orange-400" />,
-    url: "https://instagram.com/krishna_2004_28",
-    color: "hover:text-pink-400"
-  }
-];
+    {
+      name: "Behance",
+      icon: <Palette size={20} className="text-orange-400" />,
+      url: "https://behance.net/krishna",
+      color: "hover:text-purple-400"
+    },
+    {
+      name: "GitHub",
+      icon: <Github size={20} className="text-orange-400" />,
+      url: "https://github.com/PRoBoT2004",
+      color: "hover:text-gray-400"
+    },
+    {
+      name: "Instagram",
+      icon: <Instagram size={20} className="text-orange-400" />,
+      url: "https://instagram.com/krishna_2004_28",
+      color: "hover:text-pink-400"
+    }
+  ];
 
   return (
     <section 
@@ -125,13 +145,12 @@ const ContactSection = () => {
                   <motion.a
                     key={index}
                     href={info.link}
-                    className="relative group"
+                    className="relative block group"
                     initial={{ opacity: 0, x: -20 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                   >
-                    {/* Mobile glow */}
-                    <div className="absolute transition-opacity duration-300 opacity-0 -inset-1 bg-gradient-to-r from-orange-500/10 to-orange-600/10 rounded-xl blur-md group-hover:opacity-100 -z-10"></div>
+                    <div className="absolute transition-opacity duration-300 opacity-0 pointer-events-none -inset-1 bg-gradient-to-r from-orange-500/10 to-orange-600/10 rounded-xl blur-md group-hover:opacity-100"></div>
                     
                     <div className="relative p-4 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl hover:border-orange-500/40">
                       <div className="flex items-center space-x-4">
@@ -165,14 +184,14 @@ const ContactSection = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group relative`}
+                    className="relative block group"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <div className="absolute transition-opacity duration-300 rounded-full opacity-0 -inset-1 bg-gradient-to-r from-orange-500/10 to-orange-600/10 blur-md group-hover:opacity-100 -z-10"></div>
+                    <div className="absolute transition-opacity duration-300 rounded-full opacity-0 pointer-events-none -inset-1 bg-gradient-to-r from-orange-500/10 to-orange-600/10 blur-md group-hover:opacity-100"></div>
                     
                     <div className="relative p-3 transition-all duration-300 border rounded-full bg-gray-900/30 backdrop-blur-sm border-orange-500/20 hover:border-orange-500/40">
                       <span className="text-xl">{social.icon}</span>
@@ -192,61 +211,73 @@ const ContactSection = () => {
                 Send Message
               </h3>
               
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="p-4 mb-6 text-center text-green-400 border bg-green-500/10 border-green-500/20 rounded-xl">
+                  Message sent successfully! I'll get back to you soon.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="p-4 mb-6 text-center text-red-400 border bg-red-500/10 border-red-500/20 rounded-xl">
+                  Failed to send message. Please try again or contact me directly.
+                </div>
+              )}
+              
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid gap-6 sm:grid-cols-2">
-                  <div className="relative group">
+                  <div className="relative">
                     <input
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
+                      className="relative z-10 w-full px-4 py-3 text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
                       placeholder="Your Name"
                     />
                   </div>
                   
-                  <div className="relative group">
+                  <div className="relative">
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
+                      className="relative z-10 w-full px-4 py-3 text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
                       placeholder="Your Email"
                     />
                   </div>
                 </div>
                 
-                <div className="relative group">
+                <div className="relative">
                   <input
                     type="text"
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
+                    className="relative z-10 w-full px-4 py-3 text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
                     placeholder="Subject"
                   />
                 </div>
                 
-                <div className="relative group">
+                <div className="relative">
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
                     required
                     rows="6"
-                    className="w-full px-4 py-3 text-white placeholder-gray-400 transition-all duration-300 border resize-none bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
+                    className="relative z-10 w-full px-4 py-3 text-white placeholder-gray-400 transition-all duration-300 border resize-none bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
                     placeholder="Your Message"
-                  ></textarea>
+                  />
                 </div>
                 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-8 py-4 text-lg font-semibold text-black transition-all duration-300 bg-orange-500 shadow-lg rounded-xl hover:bg-orange-600 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="relative z-10 w-full px-8 py-4 text-lg font-semibold text-black transition-all duration-300 bg-orange-500 shadow-lg rounded-xl hover:bg-orange-600 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
@@ -279,8 +310,7 @@ const ContactSection = () => {
                       animate={inView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                     >
-                      {/* Desktop glow */}
-                      <div className="absolute transition-opacity duration-300 opacity-0 -inset-2 bg-gradient-to-r from-orange-500/10 to-orange-600/10 rounded-xl blur-lg group-hover:opacity-100 -z-10"></div>
+                      <div className="absolute transition-opacity duration-300 opacity-0 pointer-events-none -inset-2 bg-gradient-to-r from-orange-500/10 to-orange-600/10 rounded-xl blur-lg group-hover:opacity-100"></div>
                       
                       <div className="relative p-6 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl hover:border-orange-500/40">
                         <div className="flex items-center space-x-4">
@@ -313,13 +343,13 @@ const ContactSection = () => {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative group"
+                      className="relative block group"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={inView ? { opacity: 1, scale: 1 } : {}}
                       transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
                       whileHover={{ scale: 1.1, y: -2 }}
                     >
-                      <div className="absolute transition-opacity duration-300 rounded-full opacity-0 -inset-2 bg-gradient-to-r from-orange-500/10 to-orange-600/10 blur-lg group-hover:opacity-100 -z-10"></div>
+                      <div className="absolute transition-opacity duration-300 rounded-full opacity-0 pointer-events-none -inset-2 bg-gradient-to-r from-orange-500/10 to-orange-600/10 blur-lg group-hover:opacity-100"></div>
                       
                       <div className="relative p-4 transition-all duration-300 border rounded-full bg-gray-900/30 backdrop-blur-sm border-orange-500/20 hover:border-orange-500/40">
                         <span className="text-2xl">{social.icon}</span>
@@ -340,61 +370,73 @@ const ContactSection = () => {
                 Send Message
               </h3>
               
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="p-4 mb-6 text-green-400 border bg-green-500/10 border-green-500/20 rounded-xl">
+                  Message sent successfully! I'll get back to you soon.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="p-4 mb-6 text-red-400 border bg-red-500/10 border-red-500/20 rounded-xl">
+                  Failed to send message. Please try again or contact me directly.
+                </div>
+              )}
+              
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid gap-6 sm:grid-cols-2">
-                  <div className="relative group">
+                  <div className="relative">
                     <input
-                                            type="text"
+                      type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-4 text-lg text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
+                      className="relative z-10 w-full px-4 py-4 text-lg text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
                       placeholder="Your Name"
                     />
                   </div>
                   
-                  <div className="relative group">
+                  <div className="relative">
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-4 text-lg text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
+                      className="relative z-10 w-full px-4 py-4 text-lg text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
                       placeholder="Your Email"
                     />
                   </div>
                 </div>
                 
-                <div className="relative group">
+                <div className="relative">
                   <input
                     type="text"
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-4 text-lg text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
+                    className="relative z-10 w-full px-4 py-4 text-lg text-white placeholder-gray-400 transition-all duration-300 border bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
                     placeholder="Subject"
                   />
                 </div>
                 
-                <div className="relative group">
+                <div className="relative">
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
                     required
                     rows="8"
-                    className="w-full px-4 py-4 text-lg text-white placeholder-gray-400 transition-all duration-300 border resize-none bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
+                    className="relative z-10 w-full px-4 py-4 text-lg text-white placeholder-gray-400 transition-all duration-300 border resize-none bg-gray-900/30 backdrop-blur-sm border-orange-500/20 rounded-xl focus:border-orange-500/60 focus:outline-none"
                     placeholder="Tell me about your project..."
-                  ></textarea>
+                  />
                 </div>
                 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-8 py-4 text-xl font-semibold text-black transition-all duration-300 bg-orange-500 shadow-lg rounded-xl hover:bg-orange-600 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="relative z-10 w-full px-8 py-4 text-xl font-semibold text-black transition-all duration-300 bg-orange-500 shadow-lg rounded-xl hover:bg-orange-600 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center">
@@ -412,26 +454,11 @@ const ContactSection = () => {
             </motion.div>
           </div>
         </div>
-
-        {/* Footer */}
-        <motion.div
-          className="pt-12 mt-20 text-center border-t border-orange-500/20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          <p className="mb-4 text-gray-400">
-            © 2024 Krishna. All rights reserved.
-          </p>
-          <p className="text-sm text-gray-500">
-            Designed & Developed with ❤️ using React & Tailwind CSS
-          </p>
-        </motion.div>
       </div>
 
       {/* Background Effects */}
-      <div className="absolute rounded-full top-1/4 left-1/4 w-96 h-96 bg-orange-500/3 blur-3xl"></div>
-      <div className="absolute rounded-full bottom-1/4 right-1/4 w-96 h-96 bg-orange-600/3 blur-3xl"></div>
+      <div className="absolute rounded-full pointer-events-none top-1/4 left-1/4 w-96 h-96 bg-orange-500/3 blur-3xl"></div>
+      <div className="absolute rounded-full pointer-events-none bottom-1/4 right-1/4 w-96 h-96 bg-orange-600/3 blur-3xl"></div>
     </section>
   );
 };
